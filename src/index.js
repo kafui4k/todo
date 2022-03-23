@@ -1,1 +1,5 @@
-console.log('from the todo app....yaaaay!!!');
+const btnAddProject = document.getElementById('add-project');
+
+btnAddProject.addEventListener('click', function(e) {
+    alert('add project');
+});

@@ -4,10 +4,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
+    <title>ToDO</title>
+    <script type="text/javascript" src="./main.js" charset="utf-8" defer></script>
 </head>
 <body>
-    
+    <div class="container">
+        <header class="header" id="header">
+            <nav class="nav nav-header" id="nav nav-header">
+                <!-- <img src="" alt="logo-text"> -->
+                <h1>To DO</h1>
+            </nav>
+        </header>
+        <main class="main">
+            <aside class="aside" id="aside">
+                <!--left side nav-->
+                <div class="project-list">
+                    <h3>Projects</h3>
+                    <ul>
+                        <li><a href="">My Project</a></li>
+                        <li><a href="">My Project 2</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="add-project" id="add-project">
+                    Add a Project
+                </button>
+                <!-- </input> -->
+                <div class="add-project-input-box active" id="add-project-input-box">
+                    <input type="text" name="project" id="project" placeholder="eg: New Project">
+                    <button>Cancel</button>
+                    <button>Add</button>
+                </div>
+                
+            </aside>
+            <article class="article" id="article">
+                <!--tasks lists here-->
+                <button type="button" class="add-task" id="add-task">
+                    + Add a Task
+                </button>
+                <div class="tasks form-group">
+                        <input type="radio" name="done" id="done">
+                        <input type="text" name="title" id="title" placeholder="Task Title">
+                        <input type="text" name="description" id="description" placeholder="Task Description">
+                        <input type="datetime-local" name="datetime" id="datetime">
+
+                        <input type="radio" name="done" id="done">
+                        <input type="text" name="title" id="title" placeholder="Task Title">
+                        <input type="text" name="description" id="description" placeholder="Task Description">
+                        <input type="datetime-local" name="datetime" id="datetime">
+
+                        <input type="radio" name="done" id="done">
+                        <input type="text" name="title" id="title" placeholder="Task Title">
+                        <input type="text" name="description" id="description" placeholder="Task Description">
+                        <input type="datetime-local" name="datetime" id="datetime">
+                </div>
+              
+            </article>
+        </main>
+    </div>
 </body>
 </html>

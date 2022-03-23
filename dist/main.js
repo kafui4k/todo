@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("console.log('from the todo app....yaaaay!!!');\n\n//# sourceURL=webpack://todo/./src/index.js?");
+eval("const btnAddProject = document.getElementById('add-project');\n\nbtnAddProject.addEventListener('click', function(e) {\n    alert('add project');\n});\n\n//# sourceURL=webpack://todo/./src/index.js?");
 
 /***/ })
 
