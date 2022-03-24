@@ -5,18 +5,26 @@ const addProjectBtn = document.getElementById('add-project');
 const newProjectContainer = document.getElementById('new-project-container');
 const newProjectForm = document.querySelector('[data-new-project-form]');
 const newProjectInput = document.querySelector('[data-new-project-input]');
+const deleteProjectBtn = document.querySelector('[data-delete-project-button]');
 
 const LOCAL_STORAGE_PROJECT_KEYS = "project.projects";
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "project.selectedProjectId";
 let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEYS)) || [];
 let selectedProjectId = localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY);
 
+
 projectListContainer.addEventListener('click', function(e) {
     if (e.target.tagName.toLowerCase() === 'li') {
         selectedProjectId = e.target.dataset.listId;
         saveAndRender();
     }
-})
+});
+
+deleteProjectBtn.addEventListener('click', function(e) {
+    projects = projects.filter(project => project.id !== selectedProjectId)
+    selectedProjectId = null
+    saveAndRender();
+});
 
 newProjectForm.addEventListener('submit', function(e) {
     e.preventDefault();
