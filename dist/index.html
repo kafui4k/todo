@@ -19,46 +19,41 @@
         <main class="main">
             <aside class="aside" id="aside">
                 <!--left side nav-->
-                <div class="project-list">
-                    <h3>Projects</h3>
-                    <ul>
-                        <li><a href="">My Project</a></li>
-                        <li><a href="">My Project 2</a></li>
+                <div class="all-projects" id="all-projects">
+                    <h3 class="project-list-title">Projects</h3>
+                    <ul class="project-lists" data-list>
+                        <!-- <li class="project-list-name active-project"><a href="">My Project</a></li>
+                        <li class="project-list-name"><a href="">My Project 2</a></li> -->
                     </ul>
                 </div>
-                <button type="button" class="add-project" id="add-project">
+                <button type="button" class="add-project active" id="add-project">
                     Add a Project
                 </button>
                 <!-- </input> -->
-                <div class="add-project-input-box active" id="add-project-input-box">
-                    <input type="text" name="project" id="project" placeholder="eg: New Project">
-                    <button>Cancel</button>
-                    <button>Add</button>
+                <div class="new-project-container" id="new-project-container">
+                    <form action="" data-new-project-form>
+                        <input type="text" class="new-project" id="new-project" data-new-project-input placeholder="eg: New Project" autocomplete="off">
+                        <button type="button" class="add" id="add">Cancel</button>
+                        <button type="button" class="cancel" id="cancel">Add</button>
+                    </form>
                 </div>
                 
             </aside>
             <article class="article" id="article">
-                <!--tasks lists here-->
                 <button type="button" class="add-task" id="add-task">
                     + Add a Task
                 </button>
-                <div class="tasks form-group">
-                        <input type="radio" name="done" id="done">
-                        <input type="text" name="title" id="title" placeholder="Task Title">
-                        <input type="text" name="description" id="description" placeholder="Task Description">
-                        <input type="datetime-local" name="datetime" id="datetime">
-
-                        <input type="radio" name="done" id="done">
-                        <input type="text" name="title" id="title" placeholder="Task Title">
-                        <input type="text" name="description" id="description" placeholder="Task Description">
-                        <input type="datetime-local" name="datetime" id="datetime">
-
-                        <input type="radio" name="done" id="done">
-                        <input type="text" name="title" id="title" placeholder="Task Title">
-                        <input type="text" name="description" id="description" placeholder="Task Description">
-                        <input type="datetime-local" name="datetime" id="datetime">
+                <!--tasks lists here-->
+                <div class="tasks form-group" id="tasks">
+                    <input type="radio" name="done" id="done">
+                    <input type="text" name="tasktitle" class="tasktitle" id="tasktitle" placeholder="Task Title">
+                    <input type="text" name="description" class="description" id="description" placeholder="Task Description">
+                    <input type="datetime-local" name="datetime" id="datetime">
+                    <div class="tasks-button">
+                        <button type="submit" class="save-task" id="save-task">Add</button>
+                        <button type="submit" class="cancel-save-task" id="cancel-save-task">Cancel</button>
+                    </div>
                 </div>
-              
             </article>
         </main>
     </div>

@@ -7,26 +7,90 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/Task.js":
+/*!*********************!*\
+  !*** ./src/Task.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nclass Task {\n    constructor(title, desc, dueDate = 'today') {\n        this.title = title;\n        this.desc = desc;\n        this.dueDate = dueDate;\n    }\n\n    setTitle(title) {\n        this.title = title;\n    }\n\n    getTitle() {\n        return this.title;\n    }\n\n    setDesc(desc) {\n        this.desc = desc;\n    }\n\n    getDesc() {\n        return this.desc;\n    }\n\n    setDueDate(dueDate) {\n        this.dueDate = dueDate;\n    }\n\n    getDueDate() {\n        return this.dueDate;\n    }\n\n\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Task);\n\n//# sourceURL=webpack://todo/./src/Task.js?");
+
+/***/ }),
 
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("const btnAddProject = document.getElementById('add-project');\n\nbtnAddProject.addEventListener('click', function(e) {\n    alert('add project');\n});\n\n//# sourceURL=webpack://todo/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Task */ \"./src/Task.js\");\n\n\nconst projectListContainer = document.querySelector('[data-list]');\nconst addProjectBtn = document.getElementById('add-project');\nconst newProjectContainer = document.getElementById('new-project-container');\nconst newProjectForm = document.querySelector('[data-new-project-form]');\nconst newProjectInput = document.querySelector('[data-new-project-input]');\n\n\nlet projects = [\n    {\n        id: 1,\n        name: \"Project 1\"\n    }, \n    {\n        id: 2,\n        name: \"Project 2\"\n    }\n];\n\nnewProjectForm.addEventListener('submit', function(e) {\n    e.preventDefault();\n    const projectName = newProjectInput.value;\n\n    if (projectName === '' || projectName === null) {\n        return alert('cannot add empty Project');\n    }\n\n    const project = createProject(projectName);\n    newProjectInput.value = '';\n    projects.push(project);\n    renderProjects();\n})\n\nfunction createProject(project) {\n    return  {\n        id: Date.now().toString(),\n        name: project,\n        projects: []\n    } \n}\n\nfunction renderProjects() {\n    // clear projects if any\n    clearElement(projectListContainer);\n\n    projects.forEach(project => {\n        const listElement = document.createElement('li');\n        listElement.dataset.listId = project.id;\n        listElement.classList.add('project-list-name');\n        listElement.innerText = `${project.name}`;\n        projectListContainer.appendChild(listElement);\n    })\n}\n\nfunction clearElement(element) {\n    while(element.firstChild) {\n        element.removeChild(element.firstChild);\n    }\n}\n\naddProjectBtn.addEventListener('click', function() {\n    newProjectContainer.classList.add('active');\n    addProjectBtn.classList.remove('active');\n});\n\nrenderProjects()\n\n\n\n\n\n\n\n\nconst add = document.getElementById('add');\nconst cancel = document.getElementById('cancel');\n\nconst btnAddTask = document.getElementById('add-task');\nconst tasksContainer = document.getElementById('tasks');\nconst taskTitleInputBox = document.getElementById('tasktitle');\nconst taskDescInputBox = document.getElementById('description');\nconst saveTaskBtn = document.getElementById('save-task');\n\n\n\nadd.addEventListener('click', function() {\n    addProjectContainer.classList.remove('active');\n    btnAddProject.classList.add('active');\n});\n\ncancel.addEventListener('click', function() {\n    addProjectContainer.classList.remove('active');\n    btnAddProject.classList.add('active');\n});\n\nbtnAddTask.addEventListener('click', function() {\n    tasksContainer.classList.add('active');\n});\n\nsaveTaskBtn.addEventListener('click', function() {\n    // checcks\n    const taskTitle = taskTitleInputBox.value;\n    const taskDesc = taskDescInputBox.value;\n\n    if (taskTitle === '' || taskDesc === '') {\n        return alert('cannot add empty tasks');\n    }\n\n\n    // call Task to save task\n    // todos.addTask(new Task(taskTitle, taskDesc))\n    const createTask = new _Task__WEBPACK_IMPORTED_MODULE_0__[\"default\"](taskTitle, taskDesc);\n    console.log(createTask);\n\n    // pass createTask to todos\n\n    // create HTML elements to display task\n    // added\n    \n})\n\n\n\n\n//# sourceURL=webpack://todo/./src/index.js?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.js"]();
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()
 ;

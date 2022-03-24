@@ -26,8 +26,8 @@ html {
 
 .main {
     display: grid;
-    grid-column: 2 span;
-    grid-template-columns: 300px 1fr;
+    grid-column: 1 / 3;
+    grid-template-columns: 500px 1fr;
     /* grid-template-rows: 100vh; */
     padding: 16px;
     /* justify-content: center;
@@ -36,44 +36,54 @@ html {
 
 .aside {
     display: grid;
-    grid-template-rows: 200px 50px 100px;
+    /* grid-template-rows: 200px 50px 100px; */
     padding: 8px;
+    align-content: center;
     justify-content: center;
     gap: 16px;
 }
 
-.add-project-input-box.active {
+.article {
+    padding: 8px;
+}
+
+.add-project.active {
+    display: grid;
+    text-align: center;
+    align-items: center;
+}
+
+.add-project {
+    display: none;
+}
+
+.new-project-container.active {
     display: grid;
     gap: 2px;
 }
 
-.add-project-input-box {
+.new-project-container {
     display: none;
 }
 
-.project-list {
+.all-projects {
     overflow-x: auto;
 }
 
-.project-list ul,
-.project-list li {
+.all-projects ul,
+.all-projects li {
     list-style-type: none;
 }
 
-.project-list ul li a {
+.all-projects ul li a {
     text-decoration: none;
 }
 
-.article {
-    display: grid;
-    grid-template-rows: 50px;
-    justify-self: center;
-    gap: 16px;
-    height: auto;
-    max-width: 500px;
+.tasks {
+    display: none;
 }
 
-.tasks {
+.tasks.form-group.active {
     display: grid;
     gap: 5px;
 }
