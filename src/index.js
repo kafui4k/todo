@@ -6,17 +6,17 @@ const newProjectContainer = document.getElementById('new-project-container');
 const newProjectForm = document.querySelector('[data-new-project-form]');
 const newProjectInput = document.querySelector('[data-new-project-input]');
 
+const LOCAL_STORAGE_PROJECT_KEYS = "project.projects";
+const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "project.selectedProjectId";
+let projects = JSON.parse(localStorage.getItem(LOCAL_STORAGE_PROJECT_KEYS)) || [];
+let selectedProjectId = localStorage.getItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY);
 
-let projects = [
-    {
-        id: 1,
-        name: "Project 1"
-    }, 
-    {
-        id: 2,
-        name: "Project 2"
+projectListContainer.addEventListener('click', function(e) {
+    if (e.target.tagName.toLowerCase() === 'li') {
+        selectedProjectId = e.target.dataset.listId;
+        saveAndRender();
     }
-];
+})
 
 newProjectForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -29,7 +29,7 @@ newProjectForm.addEventListener('submit', function(e) {
     const project = createProject(projectName);
     newProjectInput.value = '';
     projects.push(project);
-    renderProjects();
+    saveAndRender();
 })
 
 function createProject(project) {
@@ -38,6 +38,16 @@ function createProject(project) {
         name: project,
         projects: []
     } 
+}
+
+function saveAndRender() {
+    save()
+    renderProjects()
+}
+
+function save() {
+    localStorage.setItem(LOCAL_STORAGE_PROJECT_KEYS, JSON.stringify(projects));
+    localStorage.setItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY, selectedProjectId);
 }
 
 function renderProjects() {
@@ -49,6 +59,11 @@ function renderProjects() {
         listElement.dataset.listId = project.id;
         listElement.classList.add('project-list-name');
         listElement.innerText = `${project.name}`;
+
+        if (project.id === selectedProjectId) {
+          listElement.classList.add('active-project');
+        }
+            
         projectListContainer.appendChild(listElement);
     })
 }

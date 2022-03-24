@@ -73,10 +73,15 @@ html {
 .all-projects ul,
 .all-projects li {
     list-style-type: none;
+    cursor: pointer;
 }
 
 .all-projects ul li a {
     text-decoration: none;
+}
+
+.project-list-name.active-project {
+    font-weight: bold;
 }
 
 .tasks {
