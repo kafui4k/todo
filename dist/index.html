@@ -40,22 +40,40 @@
                 <button type="button" class="btn delete" data-delete-project-button>Delete Project</button>
             </aside>
             <article class="article" id="article">
-                <button type="button" class="add-task" id="add-task">
-                    + Add a Task
-                </button>
                 <!--tasks lists here-->
-                <div class="tasks form-group" id="tasks">
-                    <input type="radio" name="done" id="done">
-                    <input type="text" name="tasktitle" class="tasktitle" id="tasktitle" placeholder="Task Title">
-                    <input type="text" name="description" class="description" id="description" placeholder="Task Description">
-                    <input type="datetime-local" name="datetime" id="datetime">
-                    <div class="tasks-button">
-                        <button type="submit" class="save-task" id="save-task">Add</button>
-                        <button type="submit" class="cancel-save-task" id="cancel-save-task">Cancel</button>
+                <h3 class="tasks-list-items">Tasks List</h3>
+                <div class="todos-list" id="todos-list" data-list-display-container>
+                    <h3 class="tasks-list-title" style="color:burlywood" data-list-title>Task Item</h3>
+                    <div class="todo" id="todo">
+                        <div class="tasks" data-tasks>
+    
+                        </div>
                     </div>
                 </div>
+                <div class="add-new-task form-group" id="add-new-task">
+                    <form action="" data-new-task-form>
+                        <input type="text" class="new-task" id="new-task" data-new-task-input placeholder="eg: New task" autocomplete="off">
+                        <button type="button" class="cancel" id="cancel">Add Task</button>
+                    </form>
+                    <!-- <div class="tasks-button">
+                        <button type="submit" class="save-task" id="save-task">Add</button>
+                        <button type="submit" class="cancel-save-task" id="cancel-save-task">Cancel</button>
+                    </div> -->
+                </div>
+                <!-- <button type="button" class="add-task-button" id="add-task-button">
+                    + Add a Task
+                </button> -->
             </article>
         </main>
     </div>
+
+    <template id="task-template">
+        <div class="task">
+            <input type="checkbox"/>
+            <label>
+                <span class="custom-checkbox"></span>
+            </label>
+        </div>
+    </template>
 </body>
 </html>

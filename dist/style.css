@@ -84,11 +84,11 @@ html {
     font-weight: bold;
 }
 
-.tasks {
+/* .tasks {
     display: none;
-}
+} */
 
-.tasks.form-group.active {
+.add-task-button.active {
     display: grid;
     gap: 5px;
 }

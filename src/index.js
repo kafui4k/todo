@@ -6,6 +6,13 @@ const newProjectContainer = document.getElementById('new-project-container');
 const newProjectForm = document.querySelector('[data-new-project-form]');
 const newProjectInput = document.querySelector('[data-new-project-input]');
 const deleteProjectBtn = document.querySelector('[data-delete-project-button]');
+const listDisplayContainer = document.querySelector('[data-list-display-container]');
+const listTitleElement = document.querySelector('[data-list-title]');
+const tasksContainer = document.querySelector('[data-tasks]');
+const taskTemplate = document.getElementById('task-template');
+const newTaskForm = document.querySelector('[data-new-task-form]');
+const newTaskInput = document.querySelector('[data-new-task-input]');
+
 
 const LOCAL_STORAGE_PROJECT_KEYS = "project.projects";
 const LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY = "project.selectedProjectId";
@@ -19,6 +26,15 @@ projectListContainer.addEventListener('click', function(e) {
         saveAndRender();
     }
 });
+
+tasksContainer.addEventListener('click', function(e) {
+    if (e.target.tagName.toLowerCase() === 'input') {
+        const selectedProject = projects.find(project => project.id === selectedProjectId);
+        const selectedTask = selectedProject.tasks.find(task => task.id === e.target.id);
+        selectedTask.complete = e.target.checked;
+        save();
+    }
+})
 
 deleteProjectBtn.addEventListener('click', function(e) {
     projects = projects.filter(project => project.id !== selectedProjectId)
@@ -38,19 +54,34 @@ newProjectForm.addEventListener('submit', function(e) {
     newProjectInput.value = '';
     projects.push(project);
     saveAndRender();
-})
+});
+
+newTaskForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const taskName = newTaskInput.value;
+
+    if (taskName === '' || taskName === null) {
+        return alert('cannot add empty Task');
+    }
+
+    const task = createTask(taskName);
+    newTaskInput.value = '';
+    const selectedProject = projects.find(project => project.id === selectedProjectId);
+    selectedProject.tasks.push(task);
+    saveAndRender();
+});
 
 function createProject(project) {
-    return  {
-        id: Date.now().toString(),
-        name: project,
-        projects: []
-    } 
+    return  { id: Date.now().toString(), name: project, tasks: [] } 
+}
+
+function createTask(task) {
+    return { id: Date.now().toString(), name: task, complete: false}
 }
 
 function saveAndRender() {
     save()
-    renderProjects()
+    render()
 }
 
 function save() {
@@ -58,10 +89,37 @@ function save() {
     localStorage.setItem(LOCAL_STORAGE_SELECTED_PROJECT_ID_KEY, selectedProjectId);
 }
 
-function renderProjects() {
+function render() {
     // clear projects if any
     clearElement(projectListContainer);
+    renderProjects()
 
+    const selectedProject = projects.find(project => project.id === selectedProjectId);
+    
+    if (selectedProjectId == null) {
+        listDisplayContainer.style.display = 'none';
+    } else {
+        listDisplayContainer.style.display = '';
+        listTitleElement.innerText = selectedProject.name;
+        clearElement(tasksContainer);
+        renderTasks(selectedProject);
+    }
+}
+
+function renderTasks(selectedProject) {
+    selectedProject.tasks.forEach(task => {
+        const taskElement = document.importNode(taskTemplate.content, true);
+        const checkbox = taskElement.querySelector('input');
+        checkbox.id = task.id;
+        checkbox.checked = task.complete;
+        const label = taskElement.querySelector('label');
+        label.htmlFor = task.id;
+        label.append(task.name);
+        tasksContainer.appendChild(taskElement);
+    })
+}
+
+function renderProjects() {
     projects.forEach(project => {
         const listElement = document.createElement('li');
         listElement.dataset.listId = project.id;
@@ -87,7 +145,7 @@ addProjectBtn.addEventListener('click', function() {
     addProjectBtn.classList.remove('active');
 });
 
-renderProjects()
+render()
 
 
 
@@ -99,48 +157,48 @@ renderProjects()
 const add = document.getElementById('add');
 const cancel = document.getElementById('cancel');
 
-const btnAddTask = document.getElementById('add-task');
-const tasksContainer = document.getElementById('tasks');
-const taskTitleInputBox = document.getElementById('tasktitle');
-const taskDescInputBox = document.getElementById('description');
-const saveTaskBtn = document.getElementById('save-task');
+// const btnAddTask = document.getElementById('add-task');
+// const tasksContainer = document.getElementById('tasks');
+// const taskTitleInputBox = document.getElementById('tasktitle');
+// const taskDescInputBox = document.getElementById('description');
+// const saveTaskBtn = document.getElementById('save-task');
 
 
 
-add.addEventListener('click', function() {
-    addProjectContainer.classList.remove('active');
-    btnAddProject.classList.add('active');
-});
+// add.addEventListener('click', function() {
+//     addProjectContainer.classList.remove('active');
+//     btnAddProject.classList.add('active');
+// });
 
-cancel.addEventListener('click', function() {
-    addProjectContainer.classList.remove('active');
-    btnAddProject.classList.add('active');
-});
+// cancel.addEventListener('click', function() {
+//     addProjectContainer.classList.remove('active');
+//     btnAddProject.classList.add('active');
+// });
 
-btnAddTask.addEventListener('click', function() {
-    tasksContainer.classList.add('active');
-});
+// btnAddTask.addEventListener('click', function() {
+//     tasksContainer.classList.add('active');
+// });
 
-saveTaskBtn.addEventListener('click', function() {
-    // checcks
-    const taskTitle = taskTitleInputBox.value;
-    const taskDesc = taskDescInputBox.value;
+// saveTaskBtn.addEventListener('click', function() {
+//     // checcks
+//     const taskTitle = taskTitleInputBox.value;
+//     const taskDesc = taskDescInputBox.value;
 
-    if (taskTitle === '' || taskDesc === '') {
-        return alert('cannot add empty tasks');
-    }
+//     if (taskTitle === '' || taskDesc === '') {
+//         return alert('cannot add empty tasks');
+//     }
 
 
-    // call Task to save task
-    // todos.addTask(new Task(taskTitle, taskDesc))
-    const createTask = new Task(taskTitle, taskDesc);
-    console.log(createTask);
+//     // call Task to save task
+//     // todos.addTask(new Task(taskTitle, taskDesc))
+//     const createTask = new Task(taskTitle, taskDesc);
+//     console.log(createTask);
 
-    // pass createTask to todos
+//     // pass createTask to todos
 
-    // create HTML elements to display task
-    // added
+//     // create HTML elements to display task
+//     // added
     
-})
+// })
 
 
